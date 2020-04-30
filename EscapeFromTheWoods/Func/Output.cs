@@ -73,7 +73,7 @@ namespace EscapeFromTheWoods.Func
         private static async Task MaakBosBm(Bos output)
         {
             Console.WriteLine("begin bos {0} bm", output.ID);
-            output.SaveBm();
+            await Task.Run(() => output.SaveBm());
             Console.WriteLine("einde bos  {0} bm", output.ID);
         }
 
@@ -145,11 +145,14 @@ namespace EscapeFromTheWoods.Func
                 {
                     foreach (var datatable in tablesToInsert)
                     {
-                        Console.WriteLine("Inserting: " + datatable.Key);
-                        sqlBulk.BulkCopyTimeout = 0;
-                        sqlBulk.DestinationTableName = datatable.Key;
-                        sqlBulk.WriteToServer(datatable.Value);
-                        Console.WriteLine(datatable.Key + " is in database toegevoegd");
+                        await Task.Run(() =>
+                        {
+                            Console.WriteLine("Inserting: " + datatable.Key);
+                            sqlBulk.BulkCopyTimeout = 0;
+                            sqlBulk.DestinationTableName = datatable.Key;
+                            sqlBulk.WriteToServer(datatable.Value);
+                            Console.WriteLine(datatable.Key + " is in database toegevoegd");
+                        });
                     }
                 }
             }
