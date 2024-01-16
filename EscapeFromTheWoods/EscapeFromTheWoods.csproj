@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Syroot.Windows.IO.KnownFolders" Version="1.2.3" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
 
